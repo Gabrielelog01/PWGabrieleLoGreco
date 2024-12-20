@@ -1,4 +1,4 @@
-mport random
+import random
 import math
 
 # Definizione dei prod
@@ -23,7 +23,6 @@ sensori = list(dict_sensori.values())
 memorie = list(dict_memorie.values())
 
 def lotto_processori():
-
     qnt_prod = {prod: random.randint(1000, 10000) for prod in processori}
     return qnt_prod
 
@@ -32,17 +31,15 @@ def lotto_sensori():
     return qnt_prod
 
 def lotto_memorie():
-
     qnt_prod = {prod: random.randint(1000, 10000) for prod in memorie}
     return qnt_prod
 
 def gen_prod(): 
-  
     param_prod = {}
     hours_in_a_day = 24
 
     
-     for prod in processori:
+    for prod in processori:
         # Capacità oraria casuale per ogni prod
         chips_per_hour = random.randint(1200, 3500) 
         # Tempo di produzione per unità in minuti 
@@ -71,17 +68,16 @@ def gen_prod():
             'max_giorno': max_giorno
         }
 
-        return param_prod
+    return param_prod
 
 def time_prod(qnt_prod, param_prod, max_all):
-
     time_total = 0
     work_day = 0
 
     qnt_rimanente = qnt_prod.copy()
 
      # Loop che continua finché ci sono ancora prod da produrre
-     while any(qnt_rimanente.get(prod, 0) > 0 for prod in qnt_prod):
+    while any(qnt_rimanente.get(prod, 0) > 0 for prod in qnt_prod):
         work_day += 1
         tempo_giornata = 0
         left_d = max_all  
@@ -106,8 +102,8 @@ def time_prod(qnt_prod, param_prod, max_all):
 
     return time_total, work_day
 
+
 def calcola_tempo_per_prod(qnt, time_unit, max_giorno):
- 
     tempo_per_prod = 0
     qnt_rimanente = qnt
 
@@ -120,7 +116,6 @@ def calcola_tempo_per_prod(qnt, time_unit, max_giorno):
     return tempo_per_prod
 
 def ore_minuti(tempo_in_ore):
-
     ore = int(tempo_in_ore)
     minuti = round((tempo_in_ore - ore) * 60)
 
@@ -144,6 +139,8 @@ if __name__ == "__main__":
         proporzione = qnt_s[prod] / tot
         param_prod[prod]['max_giorno'] = round(max_all * proporzione)
     
+
+
     for prod in memorie:
         proporzione = qnt_m[prod] / tot
         param_prod[prod]['max_giorno'] = round(max_all * proporzione)
